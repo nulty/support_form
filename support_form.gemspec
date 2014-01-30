@@ -7,11 +7,11 @@ require "support_form/version"
 Gem::Specification.new do |s|
   s.name        = "support_form"
   s.version     = SupportForm::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of SupportForm."
-  s.description = "TODO: Description of SupportForm."
+  s.authors     = ["Iain McNulty"]
+  s.email       = ["iain@picturk.com"]
+  s.homepage    = "http://www.github.com/Picturk"
+  s.summary     = "Drop in a support form that sends an email in the backend"
+  s.description = "Form sends an email"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
@@ -19,4 +19,5 @@ Gem::Specification.new do |s|
   # s.add_dependency "jquery-rails"
 
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "rspec-rails", "~> 2.14"
 end
