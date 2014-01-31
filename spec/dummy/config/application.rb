@@ -64,13 +64,13 @@ module Dummy
     config.generators do |g|
       g.orm             :active_record
       g.template_engine :erb
-      g.test_framework  :rspec,
-        :fixtures => true,
-        :view_specs => false,
-        :helper_specs => false,
-        :routing_specs => false,
-        :controller_specs => true,
-        :feature_specs => true
+      g.test_framework  :rspec#,
+        # :fixtures => true,
+        # :view_specs => false,
+        # :helper_specs => false,
+        # :routing_specs => false,
+        # :controller_specs => true,
+        # :feature_specs => true
       # g.fixture_replacement :factory_girl,
       #    :dir => "spec/factories"
     end
