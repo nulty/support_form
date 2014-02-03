@@ -43,6 +43,12 @@ describe SupportForm::StatsController do
       post 'create'
       response.should be_success
     end
+
+    it "creates a new Stat" do
+      expect{
+        post 'create', {stat: {stats: {"category_1" => "2"}, recipient_email: "iain@picturk.com"}}
+        }.to change{SupportForm::Stat.count}.by(1)
+    end
   end
 
   describe "PUT 'update'" do
