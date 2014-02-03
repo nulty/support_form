@@ -1,7 +1,17 @@
-<%= form_for(@support_stats) do |f| %>
-<%= f.label :stats %>
-<%= f.text_field :stats %>
-<%= f.label :recipient_email %>
-<%= f.text_area :recipient_email %>
-<%= f.submit 'Help Me!' %>
-<% end %>
+<div id='support-form'>
+  <%= form_for(@support_stats) do |f| %>
+  <div class="control-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="control-group">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div class="control-group">
+    <%= f.label :message %>
+    <%= f.text_area :message %>
+  </div>
+  <%= f.submit 'Help Me!' %>
+  <% end %>
+</div>
