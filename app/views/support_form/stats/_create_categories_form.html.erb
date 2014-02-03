@@ -1,0 +1,16 @@
+<div id='support-form'>
+  <%= form_for(@support_stats) do |f| %>
+  <div class="control-group">
+    <%= f.label :category_name %>
+    <%= f.text_field :category_name %>
+  </div>
+  <% @support_stats.stats.each do |s| %>
+
+  <% end %>
+  <div class="control-group">
+    <%= f.label :recipient_email %>
+    <%= f.email_field :recipient_email %>
+  </div>
+  <%= f.submit 'Create Categories' %>
+  <% end %>
+</div>
