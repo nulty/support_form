@@ -55,15 +55,29 @@ describe SupportForm::StatsController do
   end
 
   describe "POST 'create'" do
-    it "returns http success" do
-      post 'create', {stat: {stats: {"category_1" => "2"}, recipient_email: "iain@picturk.com"}}
-      expect(response).to be_redirect
-    end
+    context "with ONE category name" do
+      it "returns http success" do
+        post 'create', {"support_form_stat" => {"category_name" => {"category_1" => "1", "category_2" => "2"}, "recipient_email" => "iain@picturk.com"}}
+        expect(response).to be_redirect
+      end
 
-    it "creates a new Stat" do
-      expect{
-        post 'create', {stat: {stats: {"category_1" => "2"}, recipient_email: "iain@picturk.com"}}
-        }.to change{SupportForm::Stat.count}.by(1)
+      it "creates a new Stat" do
+        expect{
+          post 'create', {"support_form_stat" => {"category_name" => {"category_1" => "1", "category_2" => "2"}, "recipient_email" => "iain@picturk.com"}}
+          }.to change{SupportForm::Stat.count}.by(1)
+      end
+    end
+    context "with TWO category names" do
+      it "returns http success" do
+        post 'create', {"support_form_stat" => {"category_name" => {"category_1" => "2"}, recipient_email: "iain@picturk.com"}}
+        expect(response).to be_redirect
+      end
+
+      it "creates a new Stat" do
+        expect{
+          post 'create', {"support_form_stat" => {"category_name" => {"category_1" => "2"}, "recipient_email" => "iain@picturk.com"}}
+          }.to change{SupportForm::Stat.count}.by(1)
+      end
     end
   end
 
