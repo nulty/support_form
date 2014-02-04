@@ -7,3 +7,4 @@ gem "sqlite3"
 
 gem 'support_form', path: "../.."
 gem "pry"
+gem 'jquery-rails', '2.1.4'

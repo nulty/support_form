@@ -1,8 +1,13 @@
+
+
 <div id='support-form'>
   <%= form_for(@support_stats) do |f| %>
   <div class="control-group">
     <%= f.label :category_name %>
     <%= f.text_field :category_name %>
+  </div>
+  <div>
+    <%= link_to "Add a Category", "#", id: "add_category" %>
   </div>
   <% @support_stats.stats.each do |s| %>
 
@@ -14,3 +19,12 @@
   <%= f.submit 'Create Categories' %>
   <% end %>
 </div>
+
+
+<script>
+  $(document).ready(function() {
+    $('#add_category').click(function() {
+      $(this).before("<div class='control-group cat-field'> <label for='support_form_stat_category_name'>Category name</label>    <input id='support_form_stat_category_name' name='support_form_stat[category_name]' size='30' type='text'></div>")
+    })
+  })
+</script>
