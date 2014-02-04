@@ -6,5 +6,6 @@ module SupportForm
     attr_accessible :stats, :recipient_email
     attr_accessor :name, :email, :message, :category_name
 
+    validates :stats, :recipient_email, presence: true
   end
 end
