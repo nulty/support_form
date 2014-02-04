@@ -1,4 +1,4 @@
-
+<%= javascript_include_tag "support_form/stats" %>
 
 <div id='support-form'>
   <%= form_for(@support_stats) do |f| %>
@@ -23,8 +23,16 @@
 
 <script>
   $(document).ready(function() {
-    $('#add_category').click(function() {
-      $(this).before("<div class='control-group cat-field'> <label for='support_form_stat_category_name'>Category name</label>    <input id='support_form_stat_category_name' name='support_form_stat[category_name]' size='30' type='text'></div>")
+    $('#add_category').click(function(e) {
+      e.preventDefault();
+      if($("[id^=support_form_stat_category_name]").length == 1) {
+        count = 1
+        name = $("#support_form_stat_category_name").first().attr("name");
+        $("#support_form_stat_category_name").first().attr("name", name + "[0]");
+      } else {
+        count++;
+      }
+      $(this).before("<div class='control-group cat-field'> <label for='support_form_stat_category_name'>Category name</label>    <input id='support_form_stat_category_name"+"_"+1+"' name='support_form_stat[category_name]["+ count +"]' size='30' type='text'></div>")
     })
   })
 </script>
