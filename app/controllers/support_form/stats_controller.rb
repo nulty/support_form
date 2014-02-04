@@ -5,7 +5,7 @@ module SupportForm
     end
 
     def show
-      @support_stats = SupportForm::Stat.find(params[:id])
+      @support_stat = SupportForm::Stat.find(params[:id])
     end
 
     def new

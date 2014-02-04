@@ -1,2 +1,26 @@
-<h1>SupportForm::Stats#show</h1>
-<p>Find me in app/views/support_form/stats/show.html.erb</p>
+<h1>Showing SupportForm</h1>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag "support_form/stats" %>
+<% end %>
+
+<table border=1>
+  <tr>
+    <thead>
+      <td>ID</td>
+      <td>Stats</td>
+      <td>Recipient Email</td>
+      <td colspan="2">Buttons</td>
+    </thead>
+  </tr>
+  <tr>
+    <td><%= @support_stat.id %></td>
+    <td><% @support_stat.stats.each do |column| %>
+      <%= column[0] %>: <%= column[1] %><br>
+    <% end %>
+    </td>
+    <td><%= @support_stat.recipient_email %></td>
+    <td><%= link_to "Edit", edit_support_form_stat_path(@support_stat) %></td>
+    <td><%= button_to "Delete", @support_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+</table>
