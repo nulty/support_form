@@ -1,3 +1,4 @@
+require 'pry'
 module SupportForm
   class StatsController < ApplicationController
     def index
@@ -17,17 +18,22 @@ module SupportForm
     end
 
     def create
-      h = Hash["stats", {}, "recipient_email", ""]
+      @support_form = SupportForm::Stat.new
+
       if params["support_form_stat"]["category_name"].kind_of? Hash
-        h["stats"].merge!(params["support_form_stat"]["category_name"].invert)
-        h["stats"].each { |k,v| h["stats"][k] = 0 }
+        @support_form.stats = params["support_form_stat"]["category_name"].invert
+        @support_form.stats.each_key { |k| @support_form.stats[k] = 0 }
       else
-        h["stats"][params["support_form_stat"]["category_name"]] = 0
+        @support_form.stats[params["support_form_stat"]["category_name"]] = 0
       end
-      h["recipient_email"] = params["support_form_stat"]["recipient_email"]
-      @support_stats = SupportForm::Stat.create(h)
+      @support_form.recipient_email = params["support_form_stat"]["recipient_email"]
+
       respond_to do |format|
-        format.html { redirect_to(root_url) }
+        if @support_form.save
+          format.html { redirect_to(root_url) }
+        else
+          format.html { render :new }
+        end
       end
     end
 
