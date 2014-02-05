@@ -39,8 +39,14 @@ module SupportForm
 
     def update
       @stat = SupportForm::Stat.find(params[:id])
-      @stat.update_attributes(params[:stat])
-      redirect_to("/")
+      names = params["support_form_stat"]["category_name"].values.to_a
+      values = params["support_form_stat"]["category_name_value"].values.to_a
+      params["support_form_stat"]["stats"] = Hash[names.zip(values)]
+      params["support_form_stat"].delete("category_name")
+      params["support_form_stat"].delete("category_name_value")
+
+      @stat.update_attributes(params["support_form_stat"])
+      redirect_to(support_form_stats_path)
     end
 
     def destroy

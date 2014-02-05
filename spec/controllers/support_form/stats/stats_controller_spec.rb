@@ -84,12 +84,12 @@ describe SupportForm::StatsController do
   describe "PUT 'update'" do
     it "changes the record" do
       expect{
-        put 'update', {id: @stat, stat: { recipient_email: "new@picturk.com" }}
+        put 'update', {id: @stat, "support_form_stat" => { "category_name" => {"category_1" => "2"}, "category_name_value" => {"category_1" => "2"}, recipient_email: "new@picturk.com" }}
         }.to change{ @stat.reload.recipient_email }.to("new@picturk.com").from("iain@picturk.com")
     end
 
     it "renders the page" do
-        put 'update', {id: @stat, stat: { recipient_email: "new@picturk.com" }}
+        put 'update', {id: @stat, "support_form_stat" => { "category_name" => {"category_1" => "2"}, "category_name_value" => {"category_1" => "2"}, recipient_email: "new@picturk.com" }}
         expect(response).to be_redirect
     end
   end

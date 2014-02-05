@@ -1,0 +1,52 @@
+<%= javascript_include_tag "support_form/stats" %>
+
+<div id='support-form'>
+  <%= form_for(@support_stats) do |f| %>
+  <div class="control-group">
+      <table>
+        <tr>
+          <th><%= f.label :category_name %></th>
+          <th><%= f.label :"#_of_enquiries" %></th>
+        </tr>
+    <% @support_stats.stats.each_with_index do |s, i| %>
+        <tr>
+          <td><%= f.text_field :category_name, value: s.first, name: "support_form_stat[category_name]"+"[#{i}]", id: "support_form_stat_category_name"+"_#{i}" %></td>
+          <td><%= f.text_field :category_name_value, value: s.last, size: 4, name: "support_form_stat[category_name_value]"+"[#{i}]", id: "support_form_stat_category_name_value"+"_#{i}" %></td>
+        </tr>
+
+    <% end %>
+          </table>
+      </div>
+  <div>
+    <%= link_to "Add a Category", "#", id: "add_category" %>
+  </div>
+  <div class="control-group">
+    <%= f.label :recipient_email %>
+    <%= f.email_field :recipient_email %>
+  </div>
+  <%= f.submit 'Edit Categories' %>
+  <% end %>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+    count = $("[id^=support_form_stat_category_name_value]").length
+    name = $("#support_form_stat_category_name").first().attr("name");
+
+    $('#add_category').click(function(e) {
+      e.preventDefault();
+      if(count == 1) {
+        $("#support_form_stat_category_name").first().attr("name", name + "[0]");
+      } else {
+        count++;
+      }
+      n = count -1
+      $(this).before("<div class='control-group cat-field'> <label for='support_form_stat_category_name'>Category name</label>    <input id='support_form_stat_category_name"+"_"+n +"' name='support_form_stat[category_name]["+ n +"]' size='30' type='text'></div>");
+
+      $(this).before("<div class='control-group'> <label for='support_form_stat_category_name_value["+n+"]'>Category name value</label> <input id='support_form_stat_category_name_value_"+n+"' name='support_form_stat[category_name_value]["+n+"]' size='4' type='text' value='0'> </div>");
+    })
+  })
+</script>
+
+<%= link_to "Support Stats", support_form_stats_path %>

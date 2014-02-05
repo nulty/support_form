@@ -4,7 +4,7 @@ module SupportForm
     serialize :stats, Hash
 
     attr_accessible :stats, :recipient_email
-    attr_accessor :name, :email, :message, :category_name
+    attr_accessor :name, :email, :message, :category_name, :category_name_value
 
     validates :stats, :recipient_email, presence: true
   end
