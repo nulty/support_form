@@ -30,7 +30,7 @@ module SupportForm
 
       respond_to do |format|
         if @support_form.save
-          format.html { redirect_to(root_url) }
+          format.html { redirect_to(root_path) }
         else
           format.html { render :new }
         end
