@@ -1,4 +1,3 @@
-require 'pry'
 module SupportForm
   class StatsController < ApplicationController
     def index

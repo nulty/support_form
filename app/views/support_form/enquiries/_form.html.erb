@@ -1,0 +1,22 @@
+<div id='support-form'>
+  <%= form_for(@enquiry) do |f| %>
+  <div class="control-group">
+    <p>What is this query regarding?</p>
+    <%= f.select(:topic, @support_stats.stats.map { |k,_| [k,k] }, { prompt:  "Choose a Support Topic:"}) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="control-group">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div class="control-group">
+    <%= f.label :message %>
+    <%= f.text_area :message %>
+  </div>
+  <%= hidden_field_tag "support_form_enquiry[stats_id]", @enquiry.stats_id %>
+  <%= f.submit 'Request Support' %>
+  <% end %>
+</div>
