@@ -13,7 +13,6 @@ module SupportForm
         redirect_to(root_path)
       else
         set_the_errors
-        binding.pry
         redirect_to(:back)
       end
     end
