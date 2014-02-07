@@ -6,8 +6,11 @@ module SupportForm
 
     def run_scaffold_generator
       # create_file "config/initializers/initializer.rb", "# Add initialization content here"
-      generate "model", "support_stat stats:string recipient_email:string --no-assets --no-javascripts"
-      generate "controller", "support_stats show create edit update destroy send_email --no-assets --no-helpers"
+      inject_into_file "app/helpers/application_helper.rb", after: "module ApplicationHelper\n" do <<-'RUBY'
+  include SupportForm::Enquiries::FormHelper
+      RUBY
+      end
+      # generate "controller", "support_stats show create edit update destroy send_email --no-assets --no-helpers"
     end
   end
 end
