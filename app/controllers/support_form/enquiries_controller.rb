@@ -4,15 +4,29 @@ module SupportForm
     def create
       @enquiry = SupportForm::Enquiry.new(params[:support_form_enquiry])
 
-      topic = params[:support_form_enquiry][:topic]
+      topic = @enquiry.topic
       @stat = SupportForm::Stat.find(@enquiry.stats_id)
 
-      increment = @stat.stats[topic].to_i.next
-      @stat.stats[topic] = increment
-      @stat.save
-      respond_to do |format|
-        format.html {redirect_to(root_path)}
+      @stat.stats[topic] = @stat.stats[topic].to_i.next
+
+      if @enquiry.valid? && @stat.save
+        redirect_to(root_path)
+      else
+        set_the_errors
+        binding.pry
+        redirect_to(:back)
       end
+    end
+
+private
+    def set_the_errors
+      flash[:errors] = @enquiry.errors.full_messages
+      flash[:fields] = {}
+
+      flash[:fields][:topic] = @enquiry.topic if @enquiry.topic.present?
+      flash[:fields][:name] = @enquiry.name if @enquiry.name.present?
+      flash[:fields][:email] = @enquiry.email if @enquiry.email.present?
+      flash[:fields][:message] = @enquiry.message if @enquiry.message.present?
     end
   end
 end

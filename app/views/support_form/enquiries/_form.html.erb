@@ -1,22 +1,23 @@
 <div id='support-form'>
-  <%= form_for(@enquiry) do |f| %>
+  <%= form_for(enquiry) do |f| %>
   <div class="control-group">
     <p>What is this query regarding?</p>
-    <%= f.select(:topic, @support_stats.stats.map { |k,_| [k,k] }, { prompt:  "Choose a Support Topic:"}) %>
+    <%= f.select(:topic, options_for_select(@support_stats.stats.map { |k,_| [k,k] }, set_field(:topic)), { prompt:  "Choose a Support Topic:"}, {}) %>
+    <%= show_errors(:topic) %>
   </div>
   <div class="control-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, value: set_field(:name) %> <%= show_errors(:name) %>
   </div>
   <div class="control-group">
     <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= f.text_field :email, value: set_field(:email) %> <%= show_errors(:email) %>
   </div>
   <div class="control-group">
     <%= f.label :message %>
-    <%= f.text_area :message %>
+    <%= f.text_area :message, value: set_field(:message) %> <%= show_errors(:message) %>
   </div>
-  <%= hidden_field_tag "support_form_enquiry[stats_id]", @enquiry.stats_id %>
+  <%= hidden_field_tag "support_form_enquiry[stats_id]", enquiry.stats_id %>
   <%= f.submit 'Request Support' %>
   <% end %>
 </div>

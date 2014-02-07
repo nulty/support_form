@@ -6,7 +6,7 @@ module SupportForm
 
     attr_accessor :name, :email, :message, :stats_id, :topic
 
-    validates :name, :email, :message, presence: true
+    validates :name, :email, :message, :stats_id, :topic, presence: true
 
     def initialize(options={})
       @name = options[:name]
