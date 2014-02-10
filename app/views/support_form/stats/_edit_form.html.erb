@@ -42,9 +42,9 @@
         count++;
       }
       n = count -1
-      $(this).before("<div class='control-group cat-field'> <label for='support_form_stat_category_name'>Category name</label>    <input id='support_form_stat_category_name"+"_"+n +"' name='support_form_stat[category_name]["+ n +"]' size='30' type='text'></div>");
 
-      $(this).before("<div class='control-group'> <label for='support_form_stat_category_name_value["+n+"]'>Category name value</label> <input id='support_form_stat_category_name_value_"+n+"' name='support_form_stat[category_name_value]["+n+"]' size='4' type='text' value='0'> </div>");
+      $(this).before("<tr><td><input id='support_form_stat_category_name_"+n+"' name='support_form_stat[category_name]["+n+"]' size='30' type='text'></td> <td><input id='support_form_stat_category_name_value_"+n+"' name='support_form_stat[category_name_value]["+n+"]' size='4' type='text' value='0'></td></tr>")
+
     })
   })
 </script>
