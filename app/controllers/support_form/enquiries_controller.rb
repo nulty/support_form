@@ -14,6 +14,7 @@ module SupportForm
       @stat.stats[topic] = @stat.stats[topic].to_i.next
 
       if @enquiry.valid? && @stat.save
+        SupportForm::SupportMailer.support_enquiry_notifier(@enquiry).deliver
         flash[:notice] = "Your support query has been received"
         redirect_to(:back) rescue redirect_to(root_path)
       else

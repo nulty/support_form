@@ -1,0 +1,10 @@
+Support query for the competition has been received.
+
+Name:    <%= @name %>
+Email:   <%= @email %>
+Message: <%= @message %>
+
+Current stats are:
+<% @stats.each do |k, v| %>
+<%= "<p>#{k}: #{v}</p>" %>
+<% end %>
