@@ -1,14 +1,20 @@
+require 'generators/support_form'
 require 'rubygems'
 module SupportForm
-  class InstallGenerator < Rails::Generators::Base
-    desc "Create thee encessary models and controllers for the application"
+  module Generators
+    class InstallGenerator < Base
+      desc "Create the necessary models and controllers for the application"
 
-    def run_scaffold_generator
-      # create_file "config/initializers/initializer.rb", "# Add initialization content here"
-      inject_into_file "app/helpers/application_helper.rb", after: "module ApplicationHelper\n" do <<-'RUBY'
+      # source_root File.expand_path("../templates", __FILE__)
+      def run_scaffold_generator
+        # create_file "config/initializers/initializer.rb", "# Add initialization content here"
+
+        inject_into_file "app/helpers/application_helper.rb", after: "module ApplicationHelper\n" do <<-'RUBY'
   include SupportForm::Enquiries::FormHelper
-      RUBY
+        RUBY
+        end
       end
+      invoke "support_form:migrate"
     end
   end
 end
