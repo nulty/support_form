@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(:version => 20140131134449) do
   create_table "support_form_stats", :force => true do |t|
     t.string   "stats"
     t.string   "recipient_email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "supportable_id"
+    t.string   "supportable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end
