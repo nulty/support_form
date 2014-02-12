@@ -6,6 +6,5 @@ module SupportForm
       g.test_framework  :rspec
     end
 
-    I18n.enforce_available_locales = false
   end
 end
