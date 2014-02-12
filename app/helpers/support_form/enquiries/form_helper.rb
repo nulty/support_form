@@ -20,6 +20,10 @@ module SupportForm
         end
       end
 
+      def display_flash
+        flash[:notice] if SupportForm.configuration.use_form_flash
+      end
+
      private
       def get_stats_id
         if defined?(current_item) && current_item.support_stats.present?
