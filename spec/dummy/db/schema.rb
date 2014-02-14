@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140131134449) do
+ActiveRecord::Schema.define(:version => 20140214095159) do
 
   create_table "pages", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20140131134449) do
   end
 
   create_table "support_form_stats", :force => true do |t|
-    t.string   "stats"
+    t.string   "categories"
     t.string   "recipient_email"
     t.integer  "supportable_id"
     t.string   "supportable_type"

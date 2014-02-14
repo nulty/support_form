@@ -2,8 +2,8 @@ require "spec_helper"
 
 describe SupportForm::SupportMailer do
   describe "support_enquiry_notifier" do
-    let(:stats) { SupportForm::Stat.create(stats: {"cat_1" => "1", "cat_2" => "2"}, recipient_email: "iain@picturk.com") }
-    let(:enquiry) { SupportForm::Enquiry.new(name: "a", email: "a@a.com", message: "a", stats_id: stats.id, topic: stats['stats'].keys.first) }
+    let(:stats) { SupportForm::Stat.create(categories: {"cat_1" => "1", "cat_2" => "2"}, recipient_email: "iain@picturk.com") }
+    let(:enquiry) { SupportForm::Enquiry.new(name: "a", email: "a@a.com", message: "a", stats_id: stats.id, topic: stats['categories'].keys.first) }
     let(:mail) { SupportForm::SupportMailer.support_enquiry_notifier(enquiry) }
     let(:body) { "Support query for the competition has been received.
 

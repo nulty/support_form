@@ -30,7 +30,7 @@ Then you can add a nested attributes form in the `competition` creation form or
 just create one in the console
 
 ```ruby
-Competition.create_support_stats(stats: {"Some support query topic" => 0}, recipient_email: "who_gets_the_support@emails.com")
+Competition.create_support_stats(categories: {"Some support query topic" => 0}, recipient_email: "who_gets_the_support@emails.com")
 ```
 ## License
 

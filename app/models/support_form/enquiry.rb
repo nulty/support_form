@@ -4,7 +4,7 @@ module SupportForm
     include ActiveModel::Conversion
     extend  ActiveModel::Naming
 
-    attr_accessor :name, :email, :message, :stats_id, :topic, :stats
+    attr_accessor :name, :email, :message, :stats_id, :topic
 
     validates :name, :email, :message, :stats_id, :topic, presence: true
 

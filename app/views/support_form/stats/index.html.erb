@@ -15,7 +15,7 @@
 <% @stats.each do |stat| %>
   <tr>
     <td><%= stat.id %></td>
-    <td><%= stat.stats.to_s.truncate(25) %> (<%= stat.stats.count %>)</td>
+    <td><%= stat.categories.to_s.truncate(25) %> (<%= stat.categories.count %>)</td>
     <td><%= stat.recipient_email %></td>
     <td><%= link_to "Show", stat  %></td>
     <td><%= link_to "Edit", edit_support_form_stat_path(stat) %></td>

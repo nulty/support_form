@@ -15,7 +15,7 @@
   </tr>
   <tr>
     <td><%= @support_stat.id %></td>
-    <td><% @support_stat.stats.each do |column| %>
+    <td><% @support_stat.categories.each do |column| %>
       <%= column[0] %>: <%= column[1] %><br>
     <% end %>
     </td>

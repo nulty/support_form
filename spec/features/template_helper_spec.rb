@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Support form" do
   before(:each) do
-    SupportForm::Stat.create({"recipient_email" => "email@picturk.com","stats" => {"cat_1" => "1", "cat_2" => "2"}})
+    SupportForm::Stat.create({"recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1", "cat_2" => "2"}})
   end
 
   it "submits form and shows the flash message" do

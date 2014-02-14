@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe SupportForm::Stat do
   before(:all) do
-    @nil_email    = {"recipient_email" => nil,                "stats" => {"cat_1" => "1"}}
-    @nil_stats    = {"recipient_email" => "email@picturk.com","stats" => nil}
-    @empty_stats  = {"recipient_email" => "email@picturk.com","stats" => {}}
-    @one_category = {"recipient_email" => "email@picturk.com","stats" => {"cat_1" => "1"}}
-    @two_category = {"recipient_email" => "email@picturk.com","stats" => {"cat_1" => "1", "cat_2" => "2"}}
+    @nil_email    = {"recipient_email" => nil,                "categories" => {"cat_1" => "1"}}
+    @nil_stats    = {"recipient_email" => "email@picturk.com","categories" => nil}
+    @empty_stats  = {"recipient_email" => "email@picturk.com","categories" => {}}
+    @one_category = {"recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1"}}
+    @two_category = {"recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1", "cat_2" => "2"}}
   end
 
   describe "nil email" do

@@ -3,7 +3,7 @@
   <%= form_for(enquiry) do |f| %>
   <div class="control-group">
     <p>What is this query regarding?</p>
-    <%= f.select(:topic, options_for_select(@support_stats.stats.map { |k,_| [k,k] }, set_field(:topic)), { prompt:  "Choose a Support Topic:"}, {}) %>
+    <%= f.select(:topic, options_for_select(@support_stats.categories.map { |k,_| [k,k] }, set_field(:topic)), { prompt:  "Choose a Support Topic:"}, {}) %>
     <%= show_errors(:topic) %>
   </div>
   <div class="control-group">

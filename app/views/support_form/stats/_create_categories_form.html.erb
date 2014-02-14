@@ -3,13 +3,13 @@
 <div id='support-form'>
   <%= form_for(@support_stats) do |f| %>
   <div class="control-group">
-    <%= f.label :category_name %>
-    <%= f.text_field :category_name %>
+    <%= f.label :categories %>
+    <%= f.text_field :categories %>
   </div>
   <div>
     <%= link_to "Add a Category", "#", id: "add_category" %>
   </div>
-  <% @support_stats.stats.each do |s| %>
+  <% @support_stats.categories.each do |s| %>
 
   <% end %>
   <div class="control-group">
@@ -25,14 +25,14 @@
   $(document).ready(function() {
     $('#add_category').click(function(e) {
       e.preventDefault();
-      if($("[id^=support_form_stat_category_name]").length == 1) {
+      if($("[id^=support_form_stat_categories]").length == 1) {
         count = 1
-        name = $("#support_form_stat_category_name").first().attr("name");
-        $("#support_form_stat_category_name").first().attr("name", name + "[0]");
+        name = $("#support_form_stat_categories").first().attr("name");
+        $("#support_form_stat_categories").first().attr("name", name + "[0]");
       } else {
         count++;
       }
-      $(this).before("<div class='control-group cat-field'> <label for='support_form_stat_category_name'>Category name</label>    <input id='support_form_stat_category_name"+"_"+1+"' name='support_form_stat[category_name]["+ count +"]' size='30' type='text'></div>")
+      $(this).before("<div class='control-group cat-field'> <label for='support_form_stat_categories'>Category name</label>    <input id='support_form_stat_categories"+"_"+1+"' name='support_form_stat[categories]["+ count +"]' size='30' type='text'></div>")
     })
   })
 </script>

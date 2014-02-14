@@ -5,12 +5,12 @@
   <div class="control-group">
       <table>
         <tr>
-          <th><%= f.label :category_name %></th>
+          <th><%= f.label :categories %></th>
           <th><%= f.label :"#_of_enquiries" %></th>
         </tr>
-    <% @support_stats.stats.each_with_index do |s, i| %>
+    <% @support_stats.categories.each_with_index do |s, i| %>
         <tr>
-          <td><%= f.text_field :category_name, value: s.first, name: "support_form_stat[category_name]"+"[#{i}]", id: "support_form_stat_category_name"+"_#{i}" %></td>
+          <td><%= f.text_field :categories, value: s.first, name: "support_form_stat[categories]"+"[#{i}]", id: "support_form_stat_categories"+"_#{i}" %></td>
           <td><%= f.text_field :category_name_value, value: s.last, size: 4, name: "support_form_stat[category_name_value]"+"[#{i}]", id: "support_form_stat_category_name_value"+"_#{i}" %></td>
         </tr>
 
@@ -32,18 +32,18 @@
 <script>
   $(document).ready(function() {
     count = $("[id^=support_form_stat_category_name_value]").length
-    name = $("#support_form_stat_category_name").first().attr("name");
+    name = $("#support_form_stat_categories").first().attr("name");
 
     $('#add_category').click(function(e) {
       e.preventDefault();
       if(count == 1) {
-        $("#support_form_stat_category_name").first().attr("name", name + "[0]");
+        $("#support_form_stat_categories").first().attr("name", name + "[0]");
       } else {
         count++;
       }
-      n = count -1
+      n = count
 
-      $(this).before("<tr><td><input id='support_form_stat_category_name_"+n+"' name='support_form_stat[category_name]["+n+"]' size='30' type='text'></td> <td><input id='support_form_stat_category_name_value_"+n+"' name='support_form_stat[category_name_value]["+n+"]' size='4' type='text' value='0'></td></tr>")
+      $(this).before("<tr><td><input id='support_form_stat_categories_"+n+"' name='support_form_stat[categories]["+n+"]' size='30' type='text'></td> <td><input id='support_form_stat_category_name_value_"+n+"' name='support_form_stat[category_name_value]["+n+"]' size='4' type='text' value='0'></td></tr>")
 
     })
   })

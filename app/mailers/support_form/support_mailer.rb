@@ -11,7 +11,7 @@ class SupportForm::SupportMailer < ActionMailer::Base
     @email   = enquiry.email
     @message = enquiry.message
 
-    @stats = enquiry.stats['stats']
+    @stats = enquiry.stats['categories']
     mail to: enquiry.stats['recipient_email'], from: @email
   end
 end

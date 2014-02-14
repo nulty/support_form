@@ -11,7 +11,7 @@ module SupportForm
       topic = @enquiry.topic
       @stat = SupportForm::Stat.find(@enquiry.stats_id)
 
-      @stat.stats[topic] = @stat.stats[topic].to_i.next
+      @stat.categories[topic] = @stat.categories[topic].to_i.next
 
       if @enquiry.valid? && @stat.save
         SupportForm::SupportMailer.support_enquiry_notifier(@enquiry).deliver

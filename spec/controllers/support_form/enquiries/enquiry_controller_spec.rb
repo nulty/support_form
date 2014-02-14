@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SupportForm::EnquiriesController do
 
   before(:each) do
-    @stats = SupportForm::Stat.create(stats: {"category_1" => "4"}, recipient_email: "iain@picturk.com")
+    @stats = SupportForm::Stat.create(categories: {"category_1" => 0}, recipient_email: "iain@picturk.com")
     @enquiry_params = {"support_form_enquiry" => {name: "Name", email: "email@email.com", message: "Some Message", stats_id: @stats.id, topic: "category_1"}}
     @invalid_params = {"support_form_enquiry" => {name: "", email: "email@email.com", message: "Some Message", stats_id: @stats.id, topic: "category_1"}}
   end
@@ -20,7 +20,7 @@ describe SupportForm::EnquiriesController do
         it "updates the stats" do
           expect{
             post :create, @enquiry_params
-            }.to change{@stats.reload.stats["category_1"].to_i}.by(1)
+            }.to change{@stats.reload.categories["category_1"].to_i}.by(1)
         end
       end
 
@@ -36,7 +36,7 @@ describe SupportForm::EnquiriesController do
         it "updates the stats" do
           expect{
             post :create, @enquiry_params
-            }.to change{@stats.reload.stats["category_1"].to_i}.by(1)
+            }.to change{@stats.reload.categories["category_1"].to_i}.by(1)
         end
       end
     end
@@ -55,7 +55,7 @@ describe SupportForm::EnquiriesController do
         it "does not update the stats" do
           expect{
             post :create, @invalid_params
-            }.not_to change{@stats.reload.stats["category_1"].to_i}
+            }.not_to change{@stats.reload.categories["category_1"].to_i}
         end
 
       end
@@ -72,7 +72,7 @@ describe SupportForm::EnquiriesController do
         it "does not update the stats" do
           expect{
             post :create, @invalid_params
-            }.not_to change{@stats.reload.stats["category_1"].to_i}
+            }.not_to change{@stats.reload.categories["category_1"].to_i}
         end
 
       end

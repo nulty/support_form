@@ -3,11 +3,11 @@ module SupportForm
     self.table_name = :support_form_stats
     belongs_to :supportable, polymorphic: true
 
-    serialize :stats, Hash
+    serialize :categories, Hash
 
-    attr_accessible :stats, :recipient_email
-    attr_accessor :category_name, :category_name_value
+    attr_accessible :categories, :recipient_email
+    attr_accessor :category_name_value
 
-    validates :stats, :recipient_email, presence: true
+    validates :categories, :recipient_email, presence: true
   end
 end
