@@ -1,0 +1,30 @@
+<%= javascript_include_tag "support_form/stats_form" %>
+
+<div id='support-form'>
+<table>
+<% if competition.support_stats.categories.any? %>
+  <% competition.support_stats.categories.each_with_index do |s, i| %>
+    <tr>
+      <td><%= f.text_field :categories, value: s.first, class: :category_name %></td>
+      <td><%= f.text_field :category_value, value: s.last, size: 4, class: :category_value  %></td>
+      <td><a href='#' class='delete_category'>Delete</a></td>
+    </tr>
+
+  <% end %>
+    <% else %>
+    <tr>
+      <td><%= f.text_field :categories, value: "", class: :category_name %></td>
+      <td><%= f.text_field :category_value, value: 0, size: 4, class: :category_value  %></td>
+      <td><a href='#' class='delete_category'>Delete</a></td>
+    </tr>
+  <% end %>
+</table>
+  <div>
+    <%= link_to "Add a Category", "#", id: "add_category" %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :recipient_email %>
+    <%= f.email_field :recipient_email %>
+  </div>
+</div>
