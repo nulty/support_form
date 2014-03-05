@@ -4,7 +4,7 @@
   <%= form_for(@support_stats) do |f| %>
   <div class="control-group">
     <%= f.label :categories %>
-    <%= f.text_field :categories %>
+    <%= f.text_field :categories, value: "" %>
   </div>
   <div>
     <%= link_to "Add a Category", "#", id: "add_category" %>

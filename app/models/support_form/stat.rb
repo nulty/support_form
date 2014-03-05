@@ -8,6 +8,6 @@ module SupportForm
     attr_accessible :categories, :recipient_email
     attr_accessor :category_name_value
 
-    validates :categories, :recipient_email, presence: true
+    # validates :categories, :recipient_email, presence: true
   end
 end
