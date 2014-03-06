@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe "Creating a new support form" do
+  before do
+    @page = Page.create
+    @stats = @page.create_support_stats(categories: {"Q1" => 0, "Q2" => 0}, "recipient_email"=>"e@e.com")
+  end
 
   it "creates a new form", js: true do
     visit support_form_stats_path
@@ -20,18 +24,15 @@ describe "Creating a new support form" do
   end
 
   describe "Editing a Support Form", js: true do
-    before(:each) do
-      @support_form_stats = SupportForm::Stat.create(categories: {"Q1" => 0, "Q2" => 0}, "recipient_email"=>"e@e.com")
-    end
 
     it "edits and update form categories", js: true do
-      visit edit_support_form_stat_path(@support_form_stats)
+      visit edit_support_form_stat_path(@stats)
       expect(page).to have_selector "[value=Q1]"
       find_field("support_form_stat_categories_0").set("A1")
       expect{
         click_button "Edit Categories"
         expect(page).to have_content ""
-      }.to change{ @support_form_stats.reload.categories.first.first }.to("A1")
+      }.to change{ @stats.reload.categories.first.first }.to("A1")
       expect(current_path).to eq(support_form_stats_path)
     end
   end

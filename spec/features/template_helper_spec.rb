@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe "Support form" do
   before(:each) do
-    SupportForm::Stat.create({"recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1", "cat_2" => "2"}})
+    @page = Page.create
+    @stat = @page.create_support_stats({"recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1", "cat_2" => "2"}})
   end
 
   it "submits form and shows the flash message" do
-    visit root_path
+    visit page_path(@page)
     expect(page).to have_content("cat_1", "cat_2")
     fill_in_form
     expect{

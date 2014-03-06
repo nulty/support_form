@@ -3,7 +3,8 @@ require 'spec_helper'
 describe SupportForm::EnquiriesController do
 
   before(:each) do
-    @stats = SupportForm::Stat.create(categories: {"category_1" => 0}, recipient_email: "iain@picturk.com")
+    @page = Page.create
+    @stats = @page.create_support_stats(categories: {"category_1" => 0}, recipient_email: "iain@picturk.com")
     @enquiry_params = {"support_form_enquiry" => {name: "Name", email: "email@email.com", message: "Some Message", stats_id: @stats.id, topic: "category_1"}}
     @invalid_params = {"support_form_enquiry" => {name: "", email: "email@email.com", message: "Some Message", stats_id: @stats.id, topic: "category_1"}}
   end

@@ -28,8 +28,8 @@ module SupportForm
       def get_stats_id
         if defined?(current_item) && current_item.support_stats.present?
           current_item.support_stats.id
-        elsif SupportForm::Stat.any?
-          SupportForm::Stat.last.id
+        # elsif @stat
+        #   current_item = @stat.supportable
         else
           raise AssociationNotFoundError, "There is no Stats model for this item!"
         end
