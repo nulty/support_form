@@ -1,0 +1,15 @@
+<h3>Support query for <%= @title %> has been received</h3>
+
+<div>
+  <strong>Name:</strong>    <%= @name %><br>
+  <strong>Email:</strong>   <%= @email %><br>
+  <strong>Message:</strong> <%= @message %><br>
+<br><br>
+
+  Current stats are: <br>
+  <ul>
+  <% @stats.each do |k, v| %>
+  <%= content_tag :li, "#{k}: #{v}" %>
+  <% end %>
+  </ul>
+</div>

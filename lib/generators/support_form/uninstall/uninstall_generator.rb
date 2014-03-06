@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'pry'
 module SupportForm
   class UninstallGenerator < Rails::Generators::Base
     desc "Create thee encessary models and controllers for the application"
