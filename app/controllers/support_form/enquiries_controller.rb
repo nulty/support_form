@@ -9,12 +9,13 @@ module SupportForm
       @enquiry = SupportForm::Enquiry.new(params[:support_form_enquiry])
 
       topic = @enquiry.topic
+      title = params[:support_form_enquiry][:event].presence || "Support enquiry notifier"
       @stat = SupportForm::Stat.find(@enquiry.stats_id)
 
       @stat.categories[topic] = @stat.categories[topic].to_i.next
 
       if @enquiry.valid? && @stat.save
-        SupportForm::SupportMailer.support_enquiry_notifier(@enquiry).deliver
+        SupportForm::SupportMailer.support_enquiry_notifier(@enquiry, title).deliver
         flash[:notice] = "Your support query has been received"
         redirect_to(:back) rescue redirect_to(root_path)
       else

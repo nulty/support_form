@@ -5,8 +5,8 @@ describe SupportForm::EnquiriesController do
   before(:each) do
     @page = Page.create
     @stats = @page.create_support_stats(categories: {"category_1" => 0}, recipient_email: "iain@picturk.com")
-    @enquiry_params = {"support_form_enquiry" => {name: "Name", email: "email@email.com", message: "Some Message", stats_id: @stats.id, topic: "category_1"}}
-    @invalid_params = {"support_form_enquiry" => {name: "", email: "email@email.com", message: "Some Message", stats_id: @stats.id, topic: "category_1"}}
+    @enquiry_params = {"support_form_enquiry" => {name: "Name", email: "email@email.com", message: "Some Message", stats_id: @stats.id, topic: "category_1", event: "Some Title"}}
+    @invalid_params = {"support_form_enquiry" => {name: "", email: "email@email.com", message: "Some Message", stats_id: @stats.id, topic: "category_1", event: "Some Title"}}
   end
 
   describe "Creating a new enquiry" do
