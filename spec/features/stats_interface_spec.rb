@@ -16,6 +16,7 @@ describe "Creating a new support form" do
     fill_in "support_form_stat_categories", with: "Payment"
     fill_in "support_form_stat_categories_1", with: "Replacing wrong image"
     fill_in "support_form_stat_recipient_email", with: "email@picturk.com"
+    fill_in "support_form_stat_sender_email", with: "email@picturk.com"
     expect{
       find("[value='Create Categories']").click
       expect(page).to have_content ""
@@ -29,6 +30,7 @@ describe "Creating a new support form" do
       visit edit_support_form_stat_path(@stats)
       expect(page).to have_selector "[value=Q1]"
       find_field("support_form_stat_categories_0").set("A1")
+      find_field("support_form_stat_sender_email").set("sender@email.com")
       expect{
         click_button "Edit Categories"
         expect(page).to have_content ""

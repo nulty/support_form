@@ -5,7 +5,7 @@ module SupportForm
 
     serialize :categories, Hash
 
-    attr_accessible :categories, :recipient_email
+    attr_accessible :categories, :recipient_email, :sender_email
     attr_accessor :category_name_value
 
     # validates :categories, :recipient_email, presence: true

@@ -27,6 +27,11 @@
     <%= f.label :recipient_email %>
     <%= f.email_field :recipient_email %>
   </div>
+
+  <div class="control-group">
+    <%= f.label :sender_email, "Sender Email - Leave blank for default mailer address" %>
+    <%= f.email_field :sender_email %>
+  </div>
 </div>
 <%= content_tag(:div, link_to( "No Support", "#"), id: "no-support") if @competition.support_stats.new_record? %>
 <!-- <div id="destroy-support"><%#= link_to "Destroy Support", "#" %></div> -->

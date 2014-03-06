@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SupportForm::StatsController do
 
   before(:each) do
-    @stat = SupportForm::Stat.create(categories: {"category_1" => "4"}, recipient_email: "iain@picturk.com")
+    @stat = SupportForm::Stat.create(categories: {"category_1" => "4"}, recipient_email: "iain@picturk.com", sender_email: "sender@email.com")
   end
 
   after(:each) do

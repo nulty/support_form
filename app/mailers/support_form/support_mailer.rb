@@ -1,5 +1,5 @@
 class SupportForm::SupportMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "no-reply@picturk.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -16,8 +16,14 @@ class SupportForm::SupportMailer < ActionMailer::Base
 
     @stats = enquiry.stats['categories']
 
-    mail(to: enquiry.stats['recipient_email'],
-         from: @email,
-         subject: subject)
+
+    mail_hash = {to: enquiry.stats['recipient_email'],
+                 subject: subject}
+
+    if enquiry.stats.sender_email.present?
+      mail_hash.merge!({from: enquiry.stats.sender_email})
+    end
+
+    mail(mail_hash)
   end
 end

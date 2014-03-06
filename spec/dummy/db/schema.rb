@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140214095159) do
+ActiveRecord::Schema.define(:version => 20140306160604) do
 
   create_table "pages", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20140214095159) do
     t.string   "supportable_type"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "sender_email"
   end
 
 end

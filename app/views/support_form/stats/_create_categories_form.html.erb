@@ -16,6 +16,11 @@
     <%= f.label :recipient_email %>
     <%= f.email_field :recipient_email %>
   </div>
+
+  <div class="control-group">
+    <%= f.label :sender_email, "Sender Email - Leave blank for default mailer address" %>
+    <%= f.email_field :sender_email %>
+  </div>
   <%= f.submit 'Create Categories' %>
   <% end %>
 </div>

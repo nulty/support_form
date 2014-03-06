@@ -9,7 +9,8 @@ module SupportForm
       source_root File.expand_path("../templates", __FILE__)
 
       MIGRATIONS = [
-        'create_support_form_stats'
+        'create_support_form_stats',
+        'add_sender_email_to_support_form_stats'
       ]
 
       def create_migration_file
