@@ -6,9 +6,20 @@ module SupportForm
     end
 
     def create
+      # spam handler
+      if params[:support_form_enquiry][:first_name].present?
+        flash[:notice] = "Your support query has been received"
+        if request.referrer.present?
+          return redirect_to(:back)
+        else
+          return redirect_to(root_path)
+        end
+      end
+
       @enquiry = SupportForm::Enquiry.new(params[:support_form_enquiry])
 
       topic = @enquiry.topic
+      title = params[:support_form_enquiry][:event].presence || "Support enquiry notifier"
       @stat = SupportForm::Stat.find(@enquiry.stats_id)
 
       @stat.categories[topic] = @stat.categories[topic].to_i.next

@@ -16,7 +16,6 @@ Current stats are:
 "
 }
 
-
     it "renders the headers" do
       mail.subject.should eq("#{enquiry.name} - #{enquiry.topic} - This is the title")
       mail.to.should eq([stats['recipient_email']])
