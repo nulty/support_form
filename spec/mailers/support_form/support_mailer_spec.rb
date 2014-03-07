@@ -14,12 +14,13 @@ Current stats are:
 <p>cat_2: 2</p>
 "
 }
-
+    before(:all) do
+      DEFAULT_FROM = SupportForm::SupportMailer.default_params[:from]
+      DEFAULT_TO = SupportForm::SupportMailer.default_params[:to]
+    end
     before do
       @stats   = SupportForm::Stat.create(categories: {"cat_1" => "1", "cat_2" => "2"}, recipient_email: "iain@picturk.com", sender_email: "")
       @enquiry = SupportForm::Enquiry.new(name: "a", email: "a@a.com", message: "a", stats_id: @stats.id, topic: @stats['categories'].keys.first)
-      DEFAULT_FROM = SupportForm::SupportMailer.default_params[:from]
-      DEFAULT_TO = SupportForm::SupportMailer.default_params[:to]
       @recipient_emails = proc { @stats['recipient_email'].split(",").map(&:strip) }
     end
 

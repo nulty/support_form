@@ -6,9 +6,9 @@ describe SupportForm::StatsController do
     @stat = SupportForm::Stat.create(categories: {"category_1" => "4"}, recipient_email: "iain@picturk.com", sender_email: "sender@email.com")
   end
 
-  after(:each) do
-    SupportForm::Stat.destroy_all
-  end
+  # after(:each) do
+  #   SupportForm::Stat.destroy_all
+  # end
 
   describe "GET 'index'" do
     it "returns http success" do

@@ -2,35 +2,48 @@ require 'spec_helper'
 
 describe SupportForm::Stat do
   before(:all) do
-    @nil_email    = {"recipient_email" => nil,                "categories" => {"cat_1" => "1"}}
-    @nil_stats    = {"recipient_email" => "email@picturk.com","categories" => nil}
-    @empty_stats  = {"recipient_email" => "email@picturk.com","categories" => {}}
-    @one_category = {"recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1"}}
-    @two_category = {"recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1", "cat_2" => "2"}}
+    @valid_parameters       = {"sender_email" => "email@email.com", "recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1", "cat_2" => "2"}}
+    @one_category           = {"categories"=>{"cat_1" => "1"}}
+    @two_recipient_emails   = {"recipient_email" => "email@picturk.com, second@picturk.com"}
+    @invalid_two_recipients = {"recipient_email" => "email, second@picturk.com"}
   end
 
-  describe "nil email" do
-    subject { SupportForm::Stat.new(@nil_email) }
-    it { expect(subject).to_not be_valid }
+  describe "invalid sender email" do
+    subject { SupportForm::Stat.new(@valid_parameters.merge({"sender_email" => "emailemail.com"})) }
+    it { expect(subject).to be_invalid }
   end
 
-  describe "nil stats" do
-    subject { SupportForm::Stat.new(@nil_stats) }
-    it { expect(subject).to_not be_valid }
+  describe "valid recipient email" do
+    context "one email address" do
+      subject { SupportForm::Stat.new(@valid_parameters) }
+      it { expect(subject).to be_valid }
+    end
+
+    context "two emails addresses" do
+      subject { SupportForm::Stat.new(@valid_parameters.merge(@two_recipient_emails)) }
+      it { expect(subject).to be_valid }
+    end
   end
 
-  describe "empty stats hash" do
-    subject { SupportForm::Stat.new(@empty_stats) }
-    it { expect(subject).to_not be_valid }
+  describe "invalid recipient email" do
+    context "one email address" do
+      subject { SupportForm::Stat.new(@valid_parameters.merge({recipient_email: "email"})) }
+      it { expect(subject).to be_invalid }
+    end
+
+    context "two emails addresses" do
+      subject { SupportForm::Stat.new(@valid_parameters.merge(@invalid_two_recipients)) }
+      it { expect(subject).to be_invalid }
+    end
   end
 
   describe "one category in stats hash" do
-    subject { SupportForm::Stat.new(@one_category) }
+    subject { SupportForm::Stat.new(@valid_parameters.merge(@one_category)) }
     it { expect(subject).to be_valid }
   end
 
   describe "two category in stats hash" do
-    subject { SupportForm::Stat.new(@two_category) }
+    subject { SupportForm::Stat.new(@valid_parameters) }
     it { expect(subject).to be_valid }
   end
 
