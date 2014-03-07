@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe SupportForm::Enquiry do
 
-  before(:all) do
-    SupportForm::Stat.create(categories: {"cat_1"=>4, "cat_2"=>5}, recipient_email:"some@email.com")
-    @valid_parameters = {name: "a", email: "a@a.com", message: "a", stats_id: "1", topic: "cat_2"}
+  before(:each) do
+    stats = SupportForm::Stat.create(categories: {"cat_1"=>4, "cat_2"=>5}, recipient_email:"some@email.com", sender_email:"other@email.com")
+    @valid_parameters = {name: "a", email: "a@a.com", message: "a", stats_id: String(stats.id), topic: "cat_2"}
   end
 
 
