@@ -14,9 +14,9 @@ Add this to your Gemfile
 gem "support_form", git: "https://github.com/nulty/support_form.git"
 ```
 
-Run ``rails g support_form:install`` to inject the helper into your applicaiton helper and copy over all the migrations then run ``rake db:migrate`` to install them.
+Run ``rails g support_form:install`` to create the initializer and copy over all the migrations then run ``rake db:migrate`` to install them.
 
-You will then want to declare the association in the thing you want  to have a support form
+SupportForm::Stat is a polymorphic association through `:supportable`.
 
 ```ruby
 class Competition
@@ -26,13 +26,12 @@ class Competition
 end
 ```
 
-Then you can add a nested attributes form in the `competition` creation form or
-just create one in the console
+To create a Stat, there is a nested attributes form partial available to render through `fields_for`, a stand alone form or
+just create one in the console.
 
 ```ruby
 Competition.create_support_stats(categories: {"Some support query topic" => 0}, recipient_email: "who_gets_the_support@emails.com")
 ```
-
 
 ## Usage
 * 1
@@ -52,6 +51,11 @@ There are two helper methods in this release. Drop either
 
 into any view to get the support form to get the form.
 
+The modal depends on Bootstrap. To activate the modal you'll need a link on the page:
+
+```html
+<a href="#support-form" role="button" class="btn" data-toggle="modal">Request Support</a>
+```
 
 ## License
 
