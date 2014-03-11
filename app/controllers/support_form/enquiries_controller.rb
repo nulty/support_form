@@ -46,13 +46,15 @@ module SupportForm
 
 private
     def set_the_errors
-      flash.now[:errors] = @enquiry.errors.full_messages
-      flash.now[:fields] = {}
+      temp_flash = request.xhr? ? flash.now : flash
 
-      flash.now[:fields][:topic] = @enquiry.topic if @enquiry.topic.present?
-      flash.now[:fields][:name] = @enquiry.name if @enquiry.name.present?
-      flash.now[:fields][:email] = @enquiry.email if @enquiry.email.present?
-      flash.now[:fields][:message] = @enquiry.message if @enquiry.message.present?
+      temp_flash[:errors] = @enquiry.errors.full_messages
+      temp_flash[:fields] = {}
+
+      temp_flash[:fields][:topic] = @enquiry.topic if @enquiry.topic.present?
+      temp_flash[:fields][:name] = @enquiry.name if @enquiry.name.present?
+      temp_flash[:fields][:email] = @enquiry.email if @enquiry.email.present?
+      temp_flash[:fields][:message] = @enquiry.message if @enquiry.message.present?
     end
   end
 end
