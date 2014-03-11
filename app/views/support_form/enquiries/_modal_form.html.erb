@@ -16,11 +16,6 @@
   </div>
 </div>
 
-<script>
-  $(document).ready(function(){
-    $('#modal-submit').click(function(e) {
-      e.preventDefault()
-      $.post($('#new_support_form_enquiry').attr('action'), $('#new_support_form_enquiry').last().serialize());
-      })
-  })
-</script>
+<% content_for :head  do %>
+  <%= javascript_include_tag :"support_form/support-modal" %>
+<% end %>

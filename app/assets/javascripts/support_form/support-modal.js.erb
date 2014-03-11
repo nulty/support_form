@@ -1,0 +1,6 @@
+$(document).ready(function(){
+  $('#modal-submit').click(function(e) {
+    e.preventDefault()
+    $.post($('#new_support_form_enquiry').attr('action'), $('#new_support_form_enquiry').last().serialize());
+    })
+})

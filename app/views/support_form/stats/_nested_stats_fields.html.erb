@@ -1,5 +1,6 @@
-<%= javascript_include_tag "support_form/stats_form" %>
-
+<% content_for :head do %>
+  <%= javascript_include_tag "support_form/stats_form" %>
+<% end %>
 <div id='support-form'>
 <table>
 <% if competition.support_stats.categories.any? %>

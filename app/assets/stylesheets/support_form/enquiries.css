@@ -1,0 +1,4 @@
+.flash-notice { border: 1px solid black;display: none; }
+div#support-form form { width: 21%; margin-left: auto; margin-right: auto }
+/*div#support-form input { width: 70%; margin-left: auto; margin-right: auto }*/
+div#support-form p { font-size: 16px; }

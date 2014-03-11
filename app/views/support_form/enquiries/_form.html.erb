@@ -2,18 +2,18 @@
   <%= display_flash %>
   <%= form_for(the_enquiry, :html=>{:class=>"form-inline"}) do |f| %>
     <div class="control-group">
-      <p style="font-family:zurch-skinny/zurch-webfont">What is this query regarding?</p>
-      <%= f.select(:topic, options_for_select(@support_stats.categories.map { |k,_| [k,k] }, set_field(:topic)), { prompt:  "Choose a Support Topic:"}, {}) %>
+      <p style="font-size: 16px;">Request support with the form below</p>
+      <%= f.select(:topic, options_for_select(@support_stats.categories.map { |k,_| [k,k] }, set_field(:topic)), { prompt:  "Choose a Support Topic:"}, {class: "input-xlarge"}) %>
       <%= show_errors(:topic) %>
     </div>
     <div class="control-group">
-      <%= f.text_field :name, value: set_field(:name), placeholder: "Name" %> <%= show_errors(:name) %>
+      <%= f.text_field :name, class: "input-xlarge", value: set_field(:name), placeholder: "Name" %> <%= show_errors(:name) %>
     </div>
     <div class="control-group">
-      <%= f.text_field :email, value: set_field(:email), placeholder: "Email" %> <%= show_errors(:email) %>
+      <%= f.text_field :email, class: "input-xlarge", value: set_field(:email), placeholder: "Email" %> <%= show_errors(:email) %>
     </div>
     <div class="control-group">
-      <%= f.text_area :message, rows: 5, value: set_field(:message), placeholder: "Message" %> <%= show_errors(:message) %>
+      <%= f.text_area :message, rows: 5, class: "input-xlarge", value: set_field(:message), placeholder: "Message" %> <%= show_errors(:message) %>
     </div>
     <%= hidden_field_tag "support_form_enquiry[stats_id]", the_enquiry.stats_id %>
     <%= text_field_tag "support_form_enquiry[first_name]", "", style: "display: none;" %>
@@ -23,3 +23,7 @@
     <%= submit_button(f, local_assigns) %>
   <% end %>
 </div>
+
+<% content_for :head  do %>
+  <%= stylesheet_link_tag :"support_form/enquiries" %>
+<% end %>
