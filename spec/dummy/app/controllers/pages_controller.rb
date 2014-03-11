@@ -20,6 +20,15 @@ class PagesController < ApplicationController
     end
   end
 
+  def support_form
+    @page = Page.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @page }
+    end
+  end
+
   def new
     @page = Page.new
 

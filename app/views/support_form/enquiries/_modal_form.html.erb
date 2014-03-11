@@ -1,0 +1,26 @@
+<!-- BUTTON TO ACTIVATE THE MODAL -->
+<!-- <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a> -->
+
+
+<div id="support-modal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3><%= current_item_title %></h3>
+  </div>
+  <div class="modal-body">
+    <%= render 'support_form/enquiries/form', locals: {enquiry: enquiry} %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+    <a href="#" id="modal-submit" class="btn btn-primary">Submit Support Request</a>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $('#modal-submit').click(function(e) {
+      e.preventDefault()
+      $.post($('#new_support_form_enquiry').attr('action'), $('#new_support_form_enquiry').last().serialize());
+      })
+  })
+</script>

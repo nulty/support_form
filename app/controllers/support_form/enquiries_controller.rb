@@ -23,18 +23,23 @@ module SupportForm
       @stat = SupportForm::Stat.find(@enquiry.stats_id)
 
       @stat.categories[topic] = @stat.categories[topic].to_i.next
-
-      if @enquiry.valid? && @stat.save
-        title =  "Support enquiry notifier"
-        SupportForm::SupportMailer.support_enquiry_notifier(@enquiry, title).deliver
-        flash[:notice] = "Your support query has been received"
-        redirect_to(:back) rescue redirect_to(root_path)
-      else
-        set_the_errors
-        if request.referrer.present?
-          redirect_to(:back)
+      respond_to do |format|
+        if (@result = @enquiry.valid? && @stat.save)
+          set_the_errors
+          title =  "Support enquiry notifier"
+          SupportForm::SupportMailer.support_enquiry_notifier(@enquiry, title).deliver
+          flash[:notice] = "Your support query has been received"
+          format.js   { flash.now[:notice] = "Your support query has been received" }
+          format.html { redirect_to(:back) rescue redirect_to(root_path) }
         else
-          render action: 'new', enquiry: @enquiry
+          set_the_errors
+          if request.referrer.present?
+            format.js
+            format.html { redirect_to(:back) }
+          else
+            format.js
+            format.html { render action: 'new', enquiry: @enquiry }
+          end
         end
       end
     end

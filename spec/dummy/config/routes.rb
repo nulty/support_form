@@ -1,6 +1,7 @@
 Dummy::Application.routes.draw do
   resources :pages
 
+  get "pages/support_form/:id" => "pages#support_form", as: :support_form
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
