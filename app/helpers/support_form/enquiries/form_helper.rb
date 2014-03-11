@@ -41,6 +41,13 @@ module SupportForm
         end
       end
 
+      def submit_button(f, local_assigns=false)
+        result =  ['Request Support', {id: "support-submit", class: "btn btn-primary", data: {disable_with: "Working..."}}]
+        if local_assigns && local_assigns[:locals] && local_assigns[:locals][:modal]
+          result.last.merge!({style: "display:none"})
+        end
+        f.submit(*result)
+      end
      private
       def get_stats_id
         if defined?(current_item) && current_item.support_stats.present?

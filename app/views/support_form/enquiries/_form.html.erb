@@ -21,6 +21,6 @@
     <% if defined?(current_item) %>
     <%= hidden_field_tag "support_form_enquiry[event]", current_item.title %>
     <% end %>
-    <%= f.submit 'Request Support', class: "btn btn-primary", data: {disable_with: "Working..."} %>
+    <%= submit_button(f, local_assigns) %>
   <% end %>
 </div>

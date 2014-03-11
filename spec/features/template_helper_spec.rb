@@ -16,6 +16,7 @@ describe "Support form on page" do
       }.to change{ ActionMailer::Base.deliveries.count}.by(1)
 
       expect(page).to have_content "Your support query has been received"
+      find("input[type='submit']", visible: true)
     end
   end
 

@@ -23,6 +23,8 @@ describe "Submitting the support Modal" do
           fill_in_form
         end
 
+        find("input[type='submit']", visible: false)
+
         expect{
           find("a", :text=>"Submit Support Request").click
         }.to change{ SupportForm::Stat.last.reload.categories["cat_1"] }.by(1)
