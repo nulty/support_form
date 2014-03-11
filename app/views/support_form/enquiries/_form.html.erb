@@ -1,28 +1,26 @@
-<div id='support-form'>
+<div id='support-form' >
+<div class="form-flash-notice"></div>
   <%= display_flash %>
-  <%= form_for(enquiry) do |f| %>
-  <div class="control-group">
-    <p>What is this query regarding?</p>
-    <%= f.select(:topic, options_for_select(@support_stats.categories.map { |k,_| [k,k] }, set_field(:topic)), { prompt:  "Choose a Support Topic:"}, {}) %>
-    <%= show_errors(:topic) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, value: set_field(:name) %> <%= show_errors(:name) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :email %>
-    <%= f.text_field :email, value: set_field(:email) %> <%= show_errors(:email) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :message %>
-    <%= f.text_area :message, value: set_field(:message) %> <%= show_errors(:message) %>
-  </div>
-  <%= hidden_field_tag "support_form_enquiry[stats_id]", enquiry.stats_id %>
-  <%= text_field_tag "support_form_enquiry[first_name]", "", style: "display: none;" %>
-  <% if defined?(current_item) %>
-  <%= hidden_field_tag "support_form_enquiry[event]", current_item.title %>
-  <% end %>
-  <%= f.submit 'Request Support' %>
+  <%= form_for(the_enquiry, :html=>{:class=>"form-inline"}) do |f| %>
+    <div class="control-group">
+      <p style="font-family:zurch-skinny/zurch-webfont">What is this query regarding?</p>
+      <%= f.select(:topic, options_for_select(@support_stats.categories.map { |k,_| [k,k] }, set_field(:topic)), { prompt:  "Choose a Support Topic:"}, {}) %>
+      <%= show_errors(:topic) %>
+    </div>
+    <div class="control-group">
+      <%= f.text_field :name, value: set_field(:name), placeholder: "Name" %> <%= show_errors(:name) %>
+    </div>
+    <div class="control-group">
+      <%= f.text_field :email, value: set_field(:email), placeholder: "Email" %> <%= show_errors(:email) %>
+    </div>
+    <div class="control-group">
+      <%= f.text_area :message, rows: 5, value: set_field(:message), placeholder: "Message" %> <%= show_errors(:message) %>
+    </div>
+    <%= hidden_field_tag "support_form_enquiry[stats_id]", the_enquiry.stats_id %>
+    <%= text_field_tag "support_form_enquiry[first_name]", "", style: "display: none;" %>
+    <% if defined?(current_item) %>
+    <%= hidden_field_tag "support_form_enquiry[event]", current_item.title %>
+    <% end %>
+    <%= submit_button(f, local_assigns) %>
   <% end %>
 </div>

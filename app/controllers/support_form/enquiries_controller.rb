@@ -23,31 +23,36 @@ module SupportForm
       @stat = SupportForm::Stat.find(@enquiry.stats_id)
 
       @stat.categories[topic] = @stat.categories[topic].to_i.next
-
-      if @enquiry.valid? && @stat.save
-        title =  "Support enquiry notifier"
-        SupportForm::SupportMailer.support_enquiry_notifier(@enquiry, title).deliver
-        flash[:notice] = "Your support query has been received"
-        redirect_to(:back) rescue redirect_to(root_path)
-      else
-        set_the_errors
-        if request.referrer.present?
-          redirect_to(:back)
+      respond_to do |format|
+        if (@result = @enquiry.valid? && @stat.save)
+          set_the_errors
+          title =  "Support enquiry notifier"
+          SupportForm::SupportMailer.support_enquiry_notifier(@enquiry, title).deliver
+          flash[:notice] = "Your support query has been received"
+          format.js   { flash.now[:notice] = "Your support query has been received" }
+          format.html { redirect_to(:back) rescue redirect_to(root_path) }
         else
-          render action: 'new', enquiry: @enquiry
+          set_the_errors
+          if request.referrer.present?
+            format.js
+            format.html { redirect_to(:back) }
+          else
+            format.js
+            format.html { render action: 'new', enquiry: @enquiry }
+          end
         end
       end
     end
 
 private
     def set_the_errors
-      flash[:errors] = @enquiry.errors.full_messages
-      flash[:fields] = {}
+      flash.now[:errors] = @enquiry.errors.full_messages
+      flash.now[:fields] = {}
 
-      flash[:fields][:topic] = @enquiry.topic if @enquiry.topic.present?
-      flash[:fields][:name] = @enquiry.name if @enquiry.name.present?
-      flash[:fields][:email] = @enquiry.email if @enquiry.email.present?
-      flash[:fields][:message] = @enquiry.message if @enquiry.message.present?
+      flash.now[:fields][:topic] = @enquiry.topic if @enquiry.topic.present?
+      flash.now[:fields][:name] = @enquiry.name if @enquiry.name.present?
+      flash.now[:fields][:email] = @enquiry.email if @enquiry.email.present?
+      flash.now[:fields][:message] = @enquiry.message if @enquiry.message.present?
     end
   end
 end

@@ -9,8 +9,8 @@ require "capybara/rspec"
 require 'capybara/rails'
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Capybara.javascript_driver = :webkit
-# Capybara.javascript_driver = :selenium
+# Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :selenium
 
 Dir[File.expand_path("spec/support/**/*.rb")].each { |f| require f }
 

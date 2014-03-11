@@ -16,8 +16,8 @@ gem "jquery-rails"
 # To use debugger
 # gem 'debugger'
 group :development, :test do
-  # gem "selenium-webdriver"
-  gem "capybara-webkit"
+  gem "selenium-webdriver"
+  # gem "capybara-webkit"
   gem "capybara", "~> 2.1"
   gem "database_cleaner", git: "https://github.com/bmabey/database_cleaner.git", branch: "master"
 end
