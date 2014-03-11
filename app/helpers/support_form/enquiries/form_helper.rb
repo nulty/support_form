@@ -3,7 +3,8 @@ module SupportForm
     module FormHelper
 
       def support_form
-        render partial: 'support_form/enquiries/form', locals: {enquiry: the_enquiry}
+        modal = @_request.env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest" ? true : false
+        render partial: 'support_form/enquiries/form', locals: {enquiry: the_enquiry, modal: modal}
       end
 
       def show_errors(field_name)
@@ -43,7 +44,7 @@ module SupportForm
 
       def submit_button(f, local_assigns=false)
         result =  ['Request Support', {id: "support-submit", class: "btn btn-primary", data: {disable_with: "Working..."}}]
-        if local_assigns && local_assigns[:locals] && local_assigns[:locals][:modal]
+        if local_assigns && (local_assigns[:locals] && local_assigns[:locals][:modal]) || local_assigns[:modal]
           result.last.merge!({style: "display:none"})
         end
         f.submit(*result)
