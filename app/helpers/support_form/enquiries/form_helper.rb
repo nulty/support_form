@@ -8,10 +8,6 @@ module SupportForm
         render partial: 'support_form/enquiries/form', locals: {enquiry: enquiry}
       end
 
-      def set_topic
-        params[:support_form_enquiry][:topic] if params && params[:support_form_enquiry]
-      end
-
       def display_flash
         flash[:notice] if SupportForm.configuration.use_form_flash
       end
