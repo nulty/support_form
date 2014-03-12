@@ -6,4 +6,10 @@ class Page < ActiveRecord::Base
   def title
     "Title"
   end
+
+  def theme
+    o = Object.new
+    o.define_singleton_method(:title) { "Title" }
+    {:public=>o}
+  end
 end

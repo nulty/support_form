@@ -21,7 +21,7 @@
   <%= hidden_field_tag "support_form_enquiry[stats_id]", @enquiry.stats_id %>
   <%= text_field_tag "support_form_enquiry[first_name]", "", style: "display: none;" %>
   <% if defined?(current_item) %>
-  <%= hidden_field_tag "support_form_enquiry[event]", current_item.title %>
+  <%= hidden_field_tag "support_form_enquiry[event]", current_item.theme[:public].title %>
   <% end %>
   <%= f.submit 'Request Support' %>
   <% end %>
