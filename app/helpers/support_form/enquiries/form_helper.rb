@@ -8,16 +8,8 @@ module SupportForm
         render partial: 'support_form/enquiries/form', locals: {enquiry: enquiry}
       end
 
-      def show_errors(field_name)
-        if flash[:errors]
-          flash[:errors].grep(Regexp.new(field_name.to_s, true)).first
-        end
-      end
-
-      def set_field(field_name)
-        if flash[:fields] && flash[:fields].has_key?(field_name)
-          flash[:fields][field_name.to_sym]
-        end
+      def set_topic
+        params[:support_form_enquiry][:topic] if params && params[:support_form_enquiry]
       end
 
       def display_flash
@@ -28,8 +20,6 @@ module SupportForm
       def get_stats_id
         if defined?(current_item) && current_item.support_stats.present?
           current_item.support_stats.id
-        # elsif @stat
-        #   current_item = @stat.supportable
         else
           raise AssociationNotFoundError, "There is no Stats model for this item!"
         end

@@ -1,6 +1,6 @@
 <div id='support-form'>
   <%= display_flash %>
-  <%= form_for(@enquiry ||= (local_assigns[:enquiry] ||= enquiry ),:remote => true) do |f| %>
+  <%= form_for(@enquiry ||= local_assigns[:enquiry],:remote => true) do |f| %>
   <div class="control-group">
     <p>What is this query regarding?</p>
     <%= f.select(:topic, options_for_select(@support_stats.categories.map { |k,_| [k,k] }, set_topic), { prompt: "Choose a Support Topic:"}, {}) %>

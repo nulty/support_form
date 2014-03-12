@@ -7,7 +7,7 @@ module SupportForm
     attr_accessor :name, :email, :message, :stats_id, :topic
 
     validates :name, :email, :message, :stats_id, :topic, presence: true
-    validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }
+    validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
     validates :stats_id, inclusion: { :in => proc {SupportForm::Stat.pluck(:id).map(&:to_s)} }
     validates :topic, inclusion: {:in=>proc { |o| o.stats.categories.keys }}, if: proc { |o| o.stats.present? }
 
