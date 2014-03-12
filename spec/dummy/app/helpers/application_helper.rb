@@ -1,6 +1,6 @@
 module ApplicationHelper
 
   def current_item
-    @page || @stat.supportable
+    @page || @support_stats.supportable
   end
 end

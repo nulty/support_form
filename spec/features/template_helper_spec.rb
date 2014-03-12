@@ -6,9 +6,9 @@ describe "Support form" do
     @stat = @page.create_support_stats({"recipient_email" => "email@picturk.com","categories" => {"cat_1" => "1", "cat_2" => "2"}})
   end
 
-  it "submits form and shows the flash message" do
+  it "submits form and shows the flash message", js: true do
     visit page_path(@page)
-    expect(page).to have_content("cat_1", "cat_2")
+    expect(page).to have_selector("select option", text: "cat_1")
     fill_in_form
     expect{
       find("input[type=submit]").click

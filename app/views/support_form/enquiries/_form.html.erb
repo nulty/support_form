@@ -1,24 +1,24 @@
 <div id='support-form'>
   <%= display_flash %>
-  <%= form_for(enquiry) do |f| %>
+  <%= form_for(@enquiry ||= (local_assigns[:enquiry] ||= enquiry ),:remote => true) do |f| %>
   <div class="control-group">
     <p>What is this query regarding?</p>
-    <%= f.select(:topic, options_for_select(@support_stats.categories.map { |k,_| [k,k] }, set_field(:topic)), { prompt:  "Choose a Support Topic:"}, {}) %>
-    <%= show_errors(:topic) %>
+    <%= f.select(:topic, options_for_select(@support_stats.categories.map { |k,_| [k,k] }, set_topic), { prompt: "Choose a Support Topic:"}, {}) %>
+
   </div>
   <div class="control-group">
     <%= f.label :name %>
-    <%= f.text_field :name, value: set_field(:name) %> <%= show_errors(:name) %>
+    <%= f.text_field :name, validate: false %>
   </div>
   <div class="control-group">
     <%= f.label :email %>
-    <%= f.text_field :email, value: set_field(:email) %> <%= show_errors(:email) %>
+    <%= f.text_field :email %>
   </div>
   <div class="control-group">
     <%= f.label :message %>
-    <%= f.text_area :message, value: set_field(:message) %> <%= show_errors(:message) %>
+    <%= f.text_area :message %>
   </div>
-  <%= hidden_field_tag "support_form_enquiry[stats_id]", enquiry.stats_id %>
+  <%= hidden_field_tag "support_form_enquiry[stats_id]", @enquiry.stats_id %>
   <%= text_field_tag "support_form_enquiry[first_name]", "", style: "display: none;" %>
   <% if defined?(current_item) %>
   <%= hidden_field_tag "support_form_enquiry[event]", current_item.title %>

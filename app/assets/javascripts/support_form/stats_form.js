@@ -17,7 +17,14 @@ $(document).ready(function() {
           <a href='#' id='add_category'>Add a Category</a>  </div>  <div class='control-group'> \
         <label for='international_salon_salon_competition_support_stats_attributes_recipient_email'>Recipient email</label> \
     <input id='international_salon_salon_competition_support_stats_attributes_recipient_email' name='international_salon_salon_competition[support_stats_attributes][recipient_email]' size='30' type='email'> \
-        </div></div>"
+        </div> \
+        <div class='control-group'> \
+    <label for='international_salon_salon_competition_support_stats_attributes_sender_email'>Sender Email - Leave blank for default mailer address</label> \
+    <input id='international_salon_salon_competition_support_stats_attributes_sender_email' name='international_salon_salon_competition[support_stats_attributes][sender_email]' size='30' type='email'> \
+  </div> \
+  </div>"
+
+
 
   $("[class=category_name]").each(function(idx,ele){
     $(this).attr("name", name_name + "["+idx+"]");
