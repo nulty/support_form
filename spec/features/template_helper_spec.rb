@@ -12,6 +12,7 @@ describe "Support form" do
     fill_in_form
     expect{
       find("input[type=submit]").click
+      sleep 1
     }.to change{ ActionMailer::Base.deliveries.count}.by(1)
 
     expect(page).to have_content "Your support query has been received"
