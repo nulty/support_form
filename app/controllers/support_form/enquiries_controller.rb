@@ -14,22 +14,14 @@ module SupportForm
       @support_stats.categories[topic] = @support_stats.categories[topic].to_i.next
 
       # spam handler
-      if params[:support_form_enquiry][:first_name].present?
-        flash.now[:notice] = "Your support query has been received"
-        return render :create, handlers: [:js]
-      else
+      if params[:support_form_enquiry][:first_name].blank?
         if (@result = @enquiry.valid? && @support_stats.save)
           flash.now[:notice] = "Your support query has been received"
           SupportForm::SupportMailer.support_enquiry_notifier(@enquiry, title).deliver
-
-          respond_to do |format|
-            format.js do
-              flash.now[:notice] = "Your support query has been received"
-            end
-          end
         end
       end
 
+      flash.now[:notice] = "Your support query has been received"
     end
   end
 end
