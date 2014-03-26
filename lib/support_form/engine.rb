@@ -6,5 +6,10 @@ module SupportForm
       g.test_framework  :rspec
     end
 
+    initializer "SupportForm" do |app|
+      SupportForm.configuration do |config|
+        app.config.assets.precompile += %w( stats_form.js )
+      end
+    end
   end
 end

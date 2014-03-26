@@ -21,3 +21,7 @@ group :development, :test do
   gem "capybara", "~> 2.1"
   gem "database_cleaner", git: "https://github.com/bmabey/database_cleaner.git", branch: "master"
 end
+
+group :assets do
+  gem 'uglifier'
+end

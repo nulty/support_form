@@ -1,5 +1,3 @@
-<%= javascript_include_tag "support_form/stats_form" %>
-
 <div id='support-form'>
 <table>
 <% if competition.support_stats.categories.any? %>
@@ -33,6 +31,6 @@
     <%= f.email_field :sender_email %>
   </div>
 </div>
-<%= content_tag(:div, link_to( "No Support", "#"), id: "no-support") if @competition.support_stats.new_record? %>
+<%= content_tag(:div, link_to( "No Support", "#"), id: "no-support") if competition.support_stats.new_record? %>
 <!-- <div id="destroy-support"><%#= link_to "Destroy Support", "#" %></div> -->
 <div id="create-support" style="display: none;"><%= link_to "Create Support Form", "#" %></div>

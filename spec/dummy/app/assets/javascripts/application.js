@@ -12,4 +12,5 @@
 //
 // = require jquery
 // = require jquery_ujs
-// = require_tree .
+// = require support_form/stats_form
+//# = require_tree .
