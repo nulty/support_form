@@ -2,7 +2,11 @@ module SupportForm
   class EnquiriesController < ApplicationController
 
     def new
-      @enquiry = SupportForm::Enquiry.new
+      if defined?(current_user) && current_user.present?
+        full_name = [current_user.first_name, current_user.last_name].join(" ") || ""
+        email      = current_user.email || ""
+      end
+      @enquiry = SupportForm::Enquiry.new(name: full_name, email: email)
     end
 
     def create
